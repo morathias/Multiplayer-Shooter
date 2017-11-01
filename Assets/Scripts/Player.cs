@@ -41,7 +41,7 @@ public class Player : NetworkBehaviour {
     }
 
     public override void OnStartLocalPlayer(){
-        transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.blue;
+        //transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.blue;
     }
 
     public void applyDamage(float damageToApply) {

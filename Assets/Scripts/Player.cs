@@ -17,6 +17,12 @@ public class Player : NetworkBehaviour {
     Vector3 _mousePosition;
     Vector3 _position;
 
+    Animator _animations;
+
+    void Start() {
+        _animations = transform.GetChild(0).GetComponent<Animator>();
+    }
+
 	void Update () {
         if (!isLocalPlayer)
             return;
@@ -28,6 +34,11 @@ public class Player : NetworkBehaviour {
         Vector3 translate = new Vector3(Input.GetAxis("Horizontal"),
                                         0,
                                         Input.GetAxis("Vertical"));
+
+        if (translate.magnitude > 0)
+            _animations.Play("Armature|running");
+        else
+            _animations.Play("Armature|iddle");
 
         transform.Translate(translate * movingSpeed * Time.deltaTime, Space.World);
 
@@ -42,6 +53,7 @@ public class Player : NetworkBehaviour {
 
     public override void OnStartLocalPlayer(){
         //transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.blue;
+        transform.GetChild(1).gameObject.SetActive(true);
     }
 
     public void applyDamage(float damageToApply) {

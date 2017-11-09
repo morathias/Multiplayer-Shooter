@@ -7,6 +7,8 @@ public class Arrow : NetworkBehaviour {
 
     float _lifeTime = 3f;
 
+    float _damage = 10f;
+
 	void Update () {
         _lifeTime -= Time.deltaTime;
 
@@ -16,9 +18,16 @@ public class Arrow : NetworkBehaviour {
         transform.Translate(transform.forward  * 10f * Time.deltaTime, Space.World);
 	}
 
+    public float getDamage()
+    {
+        return _damage;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == "Player")
-            Destroy(gameObject);
+            collision.gameObject.GetComponent<Player>().takeDamage(_damage);
+
+        Destroy(gameObject);
     }
 }

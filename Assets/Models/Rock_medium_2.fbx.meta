@@ -1,7 +1,7 @@
 fileFormatVersion: 2
-guid: 0f293e44c64366e469f68ea8691164fb
-timeCreated: 1509521247
-licenseType: Free
+guid: 4caf2ddf839c0a443ad94692f6cf17d0
+timeCreated: 1510787624
+licenseType: Pro
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Rock_group_1
+    4300000: Rock_medium_2
   materials:
     importMaterials: 1
     materialName: 0
@@ -45,7 +45,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0

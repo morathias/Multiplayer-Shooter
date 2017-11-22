@@ -15,10 +15,16 @@ public class Player : NetworkBehaviour {
     float _experience = 0;
     float _life = 100f;
 
+    [SyncVar]
     int _fruitCount = 0;
-    Text fruitCountTxt;
+    Text _fruitCountTxt;
+    [SyncVar]
     int _meatCount = 0;
-    Text meatCountTxt;
+    Text _meatCountTxt;
+
+    Transform _bag;
+    const float MAX_BAG_SCALE = 0.02f;
+    const float MIN_BAG_SCALE = 0.003f;
 
     [SyncVar(hook = "updateLifeBar")]
     float _currentLife;
@@ -45,14 +51,16 @@ public class Player : NetworkBehaviour {
         _currentLife = _life;
         _currentMovingSpeed = movingSpeed;
 
+        _bag = transform.GetChild(0).GetChild(1).GetChild(0).GetChild(2).transform;
+
         GameObject[] canvas = GameObject.FindGameObjectsWithTag("UI");
 
         for (int i = 0; i < canvas.Length; i++)
         {
             if (canvas[i].name == "fruit_count_txt")
-                fruitCountTxt = canvas[i].GetComponent<Text>();
+                _fruitCountTxt = canvas[i].GetComponent<Text>();
             if (canvas[i].name == "meat_count_txt")
-                meatCountTxt = canvas[i].GetComponent<Text>();
+                _meatCountTxt = canvas[i].GetComponent<Text>();
         }
 
         _spawnPosition = transform.position;
@@ -76,6 +84,9 @@ public class Player : NetworkBehaviour {
 
         if (Input.GetMouseButtonDown(0))
             Cmdfire();
+
+        _meatCountTxt.text = "x" + _meatCount;
+        _fruitCountTxt.text = "x" + _fruitCount;
 	}
 
     [Command]
@@ -85,10 +96,19 @@ public class Player : NetworkBehaviour {
     }
 
     void crouch() {
+        Vector3 crouchingScale = transform.localScale;
         if (Input.GetKey(KeyCode.LeftControl))
+        {
             _currentMovingSpeed = movingSpeed * 0.5f;
+            crouchingScale.y = 0.5f;
+        }
         else
+        {
             _currentMovingSpeed = movingSpeed;
+            crouchingScale.y = 1f;
+        }
+
+        transform.localScale = crouchingScale;
     }
 
     void move() {
@@ -133,7 +153,11 @@ public class Player : NetworkBehaviour {
         _currentLife -= damage;
 
         if (_currentLife <= 0)
+        {
+            _fruitCount = 0;
+            _bag.localScale.Set(_bag.localScale.x, _bag.localScale.y, MIN_BAG_SCALE);
             RpcRespawn();
+        }
     }
 
     public void heal(float health) {
@@ -146,6 +170,27 @@ public class Player : NetworkBehaviour {
             _currentLife = _life;
 
         Debug.Log("item healed");
+    }
+
+    public void gotFood(int amount) {
+        Vector3 bagScale = _bag.localScale;
+        if (amount == 1)
+        {
+            _fruitCount += amount;
+            bagScale.z += 0.001f;
+        }
+        else {
+            _meatCount += amount;
+            bagScale.z += 0.005f;
+        }
+
+        if(bagScale.z > MAX_BAG_SCALE){
+            float difference = bagScale.z;
+            difference -= MAX_BAG_SCALE;
+            bagScale.z -= difference;
+        }
+
+        _bag.localScale = bagScale;
     }
 
     void updateLifeBar(float currentLife) {

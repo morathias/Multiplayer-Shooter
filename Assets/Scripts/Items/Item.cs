@@ -4,14 +4,17 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class Item : NetworkBehaviour {
+    Rigidbody _rigidBody;
 
-	// Use this for initialization
+    public int amount;
+    public float healAmount;
+	
 	void Start () {
-        transform.position = new Vector3(5, 0, 0);
+        _rigidBody = GetComponent<Rigidbody>();
+        _rigidBody.AddTorque(transform.position);
         Debug.Log("item created");
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		
 	}
@@ -19,9 +22,12 @@ public class Item : NetworkBehaviour {
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == "Player") {
-            collision.gameObject.GetComponent<Player>().heal(20f);
-        }
 
-        Destroy(gameObject);
+            Player player = collision.gameObject.GetComponent<Player>();
+            player.heal(healAmount);
+            player.gotFood(amount);
+
+            Destroy(gameObject);
+        }
     }
 }

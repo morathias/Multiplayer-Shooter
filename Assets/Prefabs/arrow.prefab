@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4858774759108626}
   - component: {fileID: 33058174775521642}
   - component: {fileID: 23835313764711782}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: arrowMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114862380491679710}
   - component: {fileID: 136418391657404682}
   - component: {fileID: 54341037512549268}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: arrow
   m_TagString: Arrow
   m_Icon: {fileID: 0}

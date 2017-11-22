@@ -135,6 +135,8 @@ GameObject:
   - component: {fileID: 4736970668490616}
   - component: {fileID: 33884720022436016}
   - component: {fileID: 23947619071651284}
+  - component: {fileID: 114192268410741284}
+  - component: {fileID: 114717594461025194}
   m_Layer: 0
   m_Name: bag
   m_TagString: Untagged
@@ -330,7 +332,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1913796963060914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.44167328, y: 0, z: -7.104065}
+  m_LocalPosition: {x: -1.3330383, y: 0.014, z: -7.4067917}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4617902124354520}
@@ -595,6 +597,38 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114192268410741284
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1447067699426526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 207
+    i1: 130
+    i2: 128
+    i3: 214
+    i4: 153
+    i5: 61
+    i6: 179
+    i7: 68
+    i8: 90
+    i9: 222
+    i10: 243
+    i11: 157
+    i12: 3
+    i13: 35
+    i14: 224
+    i15: 184
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114207640201397822
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -681,6 +715,27 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114717594461025194
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1447067699426526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.033333335
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!114 &114803743035041610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -754,7 +809,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 1.19
   m_Direction: 1
-  m_Center: {x: 0, y: 0.58, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!137 &137381295586378648
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

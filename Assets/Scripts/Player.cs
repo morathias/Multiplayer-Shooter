@@ -39,6 +39,7 @@ public class Player : NetworkBehaviour {
     Animator _animations;
 
     Image _lifeBar;
+    CapsuleCollider _collider;
 
     private void Awake()
     {
@@ -50,6 +51,7 @@ public class Player : NetworkBehaviour {
         _animations = transform.GetChild(0).GetComponent<Animator>();
         _currentLife = _life;
         _currentMovingSpeed = movingSpeed;
+        _collider = GetComponent<CapsuleCollider>();
 
         _bag = transform.GetChild(0).GetChild(1).GetChild(0).GetChild(2).transform;
 
@@ -97,18 +99,23 @@ public class Player : NetworkBehaviour {
 
     void crouch() {
         Vector3 crouchingScale = transform.localScale;
+        Vector3 capsuleScale = _collider.center;
         if (Input.GetKey(KeyCode.LeftControl))
         {
             _currentMovingSpeed = movingSpeed * 0.5f;
             crouchingScale.y = 0.5f;
+            capsuleScale.y = 0.85f;
+            Debug.Log(_collider.center.y);
         }
         else
         {
             _currentMovingSpeed = movingSpeed;
             crouchingScale.y = 1f;
+            capsuleScale.y = 0.5f;
         }
 
         transform.localScale = crouchingScale;
+        _collider.center = capsuleScale;
     }
 
     void move() {
@@ -155,6 +162,7 @@ public class Player : NetworkBehaviour {
         if (_currentLife <= 0)
         {
             _fruitCount = 0;
+            _meatCount = 0;
             _bag.localScale.Set(_bag.localScale.x, _bag.localScale.y, MIN_BAG_SCALE);
             RpcRespawn();
         }
@@ -203,5 +211,9 @@ public class Player : NetworkBehaviour {
             transform.position = _spawnPosition;
 
         _currentLife = _life;
+    }
+
+    public int getScore() {
+        return _fruitCount + _meatCount;
     }
 }

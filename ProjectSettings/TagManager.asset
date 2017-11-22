@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Arrow
   - UI
+  - Zebra
   layers:
   - Default
   - TransparentFX

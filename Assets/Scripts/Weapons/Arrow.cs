@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class Arrow : NetworkBehaviour {
 
-    float _lifeTime = 3f;
+    float _lifeTime = 2f;
 
     float _damage = 10f;
 
@@ -25,7 +25,7 @@ public class Arrow : NetworkBehaviour {
             Destroy(gameObject);
 
         if(!_collided)
-            transform.Translate(transform.forward  * 10f * Time.deltaTime, Space.World);
+            transform.Translate(transform.forward  * 15f * Time.deltaTime, Space.World);
 	}
 
     public float getDamage()

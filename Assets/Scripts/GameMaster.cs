@@ -49,7 +49,7 @@ public class GameMaster : NetworkBehaviour {
     [ClientRpc]
     void RpcInGame(float seconds, float minutes) {
         
-        _gameTimeTxt.text = _currentGameTime.ToString() + ":" + _seconds.ToString();
+        _gameTimeTxt.text = minutes.ToString() + ":" + seconds.ToString();
 
         if (minutes <= 0)
         {

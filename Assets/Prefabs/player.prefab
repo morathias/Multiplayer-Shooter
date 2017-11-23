@@ -769,7 +769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrow: {fileID: 1765542378877812, guid: 40e7d01d8a1ea744ba2148eb3626b72b, type: 2}
-  movingSpeed: 2
+  movingSpeed: 3
 --- !u!114 &114979687868255328
 MonoBehaviour:
   m_ObjectHideFlags: 1

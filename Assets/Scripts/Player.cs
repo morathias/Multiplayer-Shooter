@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Player : NetworkBehaviour {
 
     public GameObject arrow;
+    Canvas _canvas;
 
     public float movingSpeed;
     float _currentMovingSpeed;
@@ -44,6 +45,7 @@ public class Player : NetworkBehaviour {
     private void Awake()
     {
         _lifeBar = transform.GetChild(2).GetChild(1).GetComponent<Image>();
+        _canvas = transform.GetChild(2).GetComponent<Canvas>();
     }
 
     void Start()
@@ -106,12 +108,14 @@ public class Player : NetworkBehaviour {
             crouchingScale.y = 0.5f;
             capsuleScale.y = 0.85f;
             Debug.Log(_collider.center.y);
+            _canvas.enabled = false;
         }
         else
         {
             _currentMovingSpeed = movingSpeed;
             crouchingScale.y = 1f;
             capsuleScale.y = 0.5f;
+            _canvas.enabled = true;
         }
 
         transform.localScale = crouchingScale;

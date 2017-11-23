@@ -7,14 +7,20 @@ public class FruitSpawner : NetworkBehaviour {
     public GameObject fruit;
 
     public float radius = 1f;
-    float _spawnTime = 4f;
-	// Use this for initialization
-	void Update () {
+    public float spawnTime = 4f;
+    float _spawnTime;
+
+    private void Start()
+    {
+        _spawnTime = spawnTime;
+    }
+    // Use this for initialization
+    void Update () {
         _spawnTime -= Time.deltaTime;
 
         if (_spawnTime <= 0) {
             CmdDropFruit();
-            _spawnTime = 4f;
+            _spawnTime = spawnTime;
         }
     }
 

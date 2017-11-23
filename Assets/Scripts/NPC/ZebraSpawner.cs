@@ -17,9 +17,9 @@ public class ZebraSpawner : NetworkBehaviour {
         for (int i = 0; i < maxAmount; i++)
         {
             Vector3 spawnPosition = new Vector3(
-                Random.Range(-8.0f, 8.0f),
+                Random.Range(-20.0f, 20.0f),
                 0.0f,
-                Random.Range(-8.0f, 8.0f));
+                Random.Range(-20.0f, 20.0f));
 
             Quaternion spawnRotation = Quaternion.Euler(
                 0.0f,
@@ -49,9 +49,9 @@ public class ZebraSpawner : NetworkBehaviour {
     [Command]
     void CmdSpawnZebra() {
         Vector3 spawnPosition = new Vector3(
-                Random.Range(-8.0f, 8.0f),
+                Random.Range(-20.0f, 20.0f),
                 0.0f,
-                Random.Range(-8.0f, 8.0f));
+                Random.Range(-20.0f, 20.0f));
 
         Quaternion spawnRotation = Quaternion.Euler(
             0.0f,
